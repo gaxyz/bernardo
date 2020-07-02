@@ -1,0 +1,16 @@
+Bootstrap: docker
+
+From: continuumio/miniconda3
+
+
+%files
+	../bernardo.yml /usr/local
+	bin/ldmapper1 /bin
+%post
+	/opt/conda/bin/conda env create -f /usr/local/bernardo.yml
+	export PATH=/bin:$PATH
+	
+
+
+
+

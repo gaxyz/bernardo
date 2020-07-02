@@ -1,0 +1,13 @@
+name: bernardo
+channels:
+  - conda-forge
+  - bioconda
+  - r 
+
+dependencies:
+  - plink
+  - stdpopsim
+  - r-tidyverse
+
+
+
