@@ -7,11 +7,23 @@ process LDMAP {
         file(tped)
 
     output:
-        file("ldmap.map"), emit: ldmap_map
-        file("ldmap.log"), emit: ldmap_log
+        path "ldmap.map"
+        path "ldmap.log"
 
     """
-    ldmapper1 ${tped} intermediate.tmp job.job ldmap.map ldmap.log 0.05 0.001
+    echo "PA(E=0.009424,M=0.5)
+IT(E)
+IT(E,M)
+IT(E,M)
+CC" > job.job    
+
+    /usr/bin/ldmapper1 ${tped} \
+                                                                  intermediate.tmp \
+                                                                  job.job \
+                                                                  ldmap.map \
+                                                                  ldmap.log \
+                                                                  0.05 \
+                                                                  0.001
     """
 
 
