@@ -17,7 +17,7 @@ IT(E,M)
 IT(E,M)
 CC" > job.job    
 
-    /usr/bin/ldmapper1 ${tped} \
+    ${params.ldmap} ${tped} \
                                                                   intermediate.tmp \
                                                                   job.job \
                                                                   ldmap.map \

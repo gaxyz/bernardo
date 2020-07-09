@@ -2,16 +2,17 @@ nextflow.preview.dsl=2
 workflow {
 
 /// Configuration
-sample = 20
-outdir = "."
+sample = params.sample_number
+outdir = params.outdir
+ldmap = params.ldmap_path
 
 /// Include modules
 
 
-include { AMERICAN_ADMIXED } from '../modules/simulation'
+include { AMERICAN_ADMIXED } from '../modules/simulation' params(sample:sample)
 include { VCF_TO_TPED } from '../modules/wrangling'
 include { ADD_ID_TPED } from '../modules/wrangling'
-include { LDMAP } from '../modules/recombination' params(outdir:outdir)
+include { LDMAP } from '../modules/recombination' params(outdir:outdir, ldmap:ldmap)
 
 /// Define workflow
 
