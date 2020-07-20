@@ -1,3 +1,7 @@
 test
 *.sif
-
+work
+results
+.nextflow
+american-admixture
+*.swp

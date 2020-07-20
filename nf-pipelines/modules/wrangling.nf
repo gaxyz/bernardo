@@ -1,6 +1,7 @@
 
 process VCF_TO_TPED {
-    
+
+
     scratch true
     input:
         file(vcf)
