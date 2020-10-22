@@ -39,9 +39,9 @@ process PARALLEL_LDMAP {
         file("*.log")
 
     """
-    split_tped.py $tped $population $params.window_size $params.window_offset 
-    parallel_ldmap.py $params.ldmap $population 
-    average_ldmap.py $population ldmap_averaged_${population}.map
+    split-tped.py $tped $population $params.window_size $params.window_offset 
+    parallel-ldmap.py $params.ldmap $population $task.cpus 
+    average-ldmap.py $population ldmap_averaged_${population}.map
     """
 
 

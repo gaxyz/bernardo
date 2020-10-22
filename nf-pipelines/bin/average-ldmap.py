@@ -15,10 +15,6 @@ output_name = args.outFile
 
 
 
-
-
-
-
 def ldmap_to_dict( input_file, dictionary ):
     """
     Read an ldmap file into a dictionary. 
@@ -66,7 +62,7 @@ def average_and_write(dictionary, outfile):
 
 
 loci_dict = {} # dictionary for holding values
-file_list = glob.glob( file_prefix + "*.ldmap" )
+file_list = glob.glob( file_prefix + "*.map" )
 
 for ldmap_file in file_list:
     ldmap_to_dict(ldmap_file, loci_dict)

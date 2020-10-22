@@ -1,5 +1,6 @@
 test
 *.sif
+data
 work
 results
 .nextflow
