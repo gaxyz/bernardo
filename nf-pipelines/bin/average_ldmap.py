@@ -1,10 +1,23 @@
 #!/usr/bin/env python3
-import sys
+
 import glob
-"""
-This script averages LDMAP results from a sliding window approach.
-LDMAP values (LDUs) estimated from only one value are discarded and tagged as NAs.
-"""
+import argparse
+
+
+
+parser = argparse.ArgumentParser( description = 'Averages LDMAP results from a sliding window approach. LDMAP values (LDUs) estimated from only one value are discarded and tagged as NAs.')
+parser.add_argument("filePrefix", type = str, help = "File prefix of LDMAP files" )
+parser.add_argument("outFile", type = str, help = "Output file name" )
+
+args = parser.parse_args()
+file_prefix = args.filePrefix
+output_name = args.outFile
+
+
+
+
+
+
 
 def ldmap_to_dict( input_file, dictionary ):
     """
@@ -17,14 +30,14 @@ def ldmap_to_dict( input_file, dictionary ):
         for line in ldmap_file:
             if not line.startswith("#"):
                 SNPid = line.split[0]
-                kb_map = line.split[1]
+                #kb_map = line.split[1]
                 LDU = line.split[2].rstrip()
                 try:
-                    dictionary[key]
+                    dictionary[SNPid]
                 except KeyError:
-                    dictionary[key] = [LDU]
+                    dictionary[SNPid] = LDU
                 else:
-                    dictionary[key].append( LDU )
+                    dictionary[SNPid].append( LDU )
             else:
                 pass
 
@@ -43,15 +56,16 @@ def average_and_write(dictionary, outfile):
                 average_ldmap = sum(ldmap_values)/len(ldmap_values)
             else:
                 average_ldmap = "NA"
-            handle.write( "{0} {1}\n".format(key, average_ldmap)
+            handle.write( "{0} {1}\n".format(key, average_ldmap))
 
 
 
-file_prefix = sys.argv[1] # File prefix of ldmap files
-output_name = sys.argv[2] # Output file name
+
+
+
+
 
 loci_dict = {} # dictionary for holding values
-
 file_list = glob.glob( file_prefix + "*.ldmap" )
 
 for ldmap_file in file_list:

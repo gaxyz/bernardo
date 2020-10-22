@@ -4,7 +4,7 @@ process AMERICAN_ADMIXED {
     input:
         val sample
     output:
-        path "genotypes.vcf", emit: vcf
+        file("genotypes.vcf"), emit: vcf
 
     """
     stdpopsim HomSap -g HapMapII_GRCh37 \

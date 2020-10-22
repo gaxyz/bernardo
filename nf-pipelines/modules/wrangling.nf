@@ -6,7 +6,7 @@ process VCF_TO_TPED {
     input:
         file(vcf)
     output:
-        path "genotypes.tped", emit: tped
+        file("genotypes.tped"), emit: tped
 
     """
     plink --vcf ${vcf} --recode 12 transpose --out genotypes
@@ -21,7 +21,7 @@ process ADD_ID_TPED {
     input:
         file(tped)
     output:
-        path "genotypes_ID.tped", emit: tped_ID
+        file("genotypes_ID.tped"), emit: tped_ID
     
     
     """
@@ -50,7 +50,7 @@ process SPLIT_TPED {
         val window_size
         val window_offset
     output:
-        path "genotypes_split_*.tped"
+        file("genotypes_split_*.tped")
 
     """
     split_tped.py ${tped} ${window_size} ${window_offset}
@@ -65,7 +65,7 @@ process AVERAGE_LDMAP {
     input:
         file(ldmap)
     output:
-        path "ldmap_averaged.txt"
+        file("ldmap_averaged.txt")
     
     """
     average_ldmap.py genotypes_split ldmap_averaged.txt 

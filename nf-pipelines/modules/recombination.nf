@@ -28,3 +28,27 @@ CC" > job.job
 
 
 }
+
+
+process PARALLEL_LDMAP {
+
+    input:
+        tuple val(population),file(tped)
+    output:
+        file("ldmap_averaged_*.map")
+        file("*.log")
+
+    """
+    split_tped.py $tped $population $params.window_size $params.window_offset 
+    parallel_ldmap.py $params.ldmap $population 
+    average_ldmap.py $population ldmap_averaged_${population}.map
+    """
+
+
+
+
+
+
+
+}
+
