@@ -33,9 +33,9 @@ CC" > job.job
 process PARALLEL_LDMAP {
 
     input:
-        tuple val(population),file(tped)
+        tuple val(id),file(tped)
     output:
-        file("ldmap_averaged_*.map")
+        tuple val(id), file("ldmap_averaged_*.map")
         file("*.log")
 
     """

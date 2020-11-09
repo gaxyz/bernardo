@@ -4,12 +4,12 @@ process VCF_TO_TPED {
 
     scratch true
     input:
-        file(vcf)
+        tuple val(id), file(vcf)
     output:
-        file("genotypes.tped"), emit: tped
+        tuple val(id), file("genotypes.tped")
 
     """
-    plink --vcf ${vcf} --recode 12 transpose --out genotypes
+    plink --vcf ${vcf} --recode 12 transpose --out genotypes_${id}
     """
 
 }
