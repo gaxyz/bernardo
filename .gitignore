@@ -3,6 +3,6 @@ test
 data
 work
 results
-.nextflow
+.nextflow*
 american-admixture
 *.swp

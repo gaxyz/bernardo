@@ -32,6 +32,9 @@ CC" > job.job
 
 process PARALLEL_LDMAP {
 
+    publishDir "results", pattern: "ldmap_averaged_*.map"
+
+    
     input:
         tuple val(id),file(tped)
     output:
@@ -39,15 +42,10 @@ process PARALLEL_LDMAP {
         file("*.log")
 
     """
-    split-tped.py $tped $population $params.window_size $params.window_offset 
-    parallel-ldmap.py $params.ldmap $population $task.cpus 
-    average-ldmap.py $population ldmap_averaged_${population}.map
+    split-tped.py $tped $id $params.window_size $params.window_offset 
+    parallel-ldmap.py $params.ldmap $id $task.cpus 
+    average-ldmap.py $id ldmap_averaged_${id}.map
     """
-
-
-
-
-
 
 
 }

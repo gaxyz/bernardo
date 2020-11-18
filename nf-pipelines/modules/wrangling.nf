@@ -6,7 +6,7 @@ process VCF_TO_TPED {
     input:
         tuple val(id), file(vcf)
     output:
-        tuple val(id), file("genotypes.tped")
+        tuple val(id), file("genotypes_*.tped")
 
     """
     plink --vcf ${vcf} --recode 12 transpose --out genotypes_${id}
@@ -21,7 +21,7 @@ process ADD_ID_TPED {
     input:
         file(tped)
     output:
-        file("genotypes_ID.tped"), emit: tped_ID
+        file("genotypes_ID.tped")
     
     
     """
