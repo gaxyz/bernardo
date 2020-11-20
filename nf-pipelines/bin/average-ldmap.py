@@ -22,8 +22,9 @@ def ldmap_to_dict( input_file, dictionary ):
     values is a list of LDU values that is updated as new files are read.
     """
     with open(input_file, 'r' ) as ldmap_file:
-
+        next(ldmap_file)
         for line in ldmap_file:
+            
             if not line.startswith("#"):
                 SNPid = line.split[0]
                 #kb_map = line.split[1]
