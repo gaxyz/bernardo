@@ -7,9 +7,10 @@ vcfs = params.vcfs     // must be glob
 ldmap = params.ldmap                                                       
 window_size = params.window_size                                                
 window_offset = params.window_offset                                            
-                                                                                
+min_maf = params.min_maf 
+                                                                               
 /// Include modules                                                             
-include {VCF_TO_TPED} from '../modules/wrangling'
+include { PREPROCESS ; VCF_TO_TPED } from '../modules/wrangling'
 include { PARALLEL_LDMAP } from '../modules/recombination' 
 
 // Channel VCFs
@@ -21,8 +22,12 @@ vcf = Channel
 
                                                                                 
 /// Define workflow                                                             
-                                                                                
-VCF_TO_TPED( vcf )            // Read genotypes                                                                     
+/// Filter biallelic sites
+/// Filter MAF
+/// Filter Indels
+
+PREPROCESS( vcf )
+VCF_TO_TPED( PREPROCESS.out )            // Read genotypes                                                                     
 PARALLEL_LDMAP( VCF_TO_TPED.out )
   
                                                                                 

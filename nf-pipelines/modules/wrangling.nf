@@ -1,3 +1,86 @@
+process PREPROCESS {
+
+    scratch false                                                             
+    input:                                                                      
+        tuple val(id), file(vcf)                                                
+    output:                                                                     
+        tuple val(id), file("*_prep.recode.vcf")    
+
+
+    """
+    vcftools --gzvcf ${vcf} \
+             --recode --maf ${params.min_maf} \
+             --out ${id}
+
+    vcftools    --vcf ${id}.recode.vcf \
+                --recode --min-alleles 2 --max-alleles 2 \
+                --out ${id}_bial        
+   
+
+    vcftools --vcf ${id}_bial.recode.vcf  \
+                --recode --remove-indels \
+                --out ${id}_prep   
+    """
+}
+
+
+
+
+
+
+
+process MAF {
+
+
+    scratch true
+    input:
+        tuple val(id), file(vcf)
+    output:
+        tuple val(id), file("*.recode.vcf")
+
+    """
+    vcftools --vcf ${vcf} \
+             --recode --maf ${params.min_maf} \
+             --out ${id}
+    """
+
+
+
+}
+process BIALLELIC {
+
+
+    scratch true
+    input:                                                                      
+        tuple val(id), file(vcf)                                                
+    output:                                                                     
+        tuple val(id), file("*.recode.vcf")  
+
+    """
+    vcftools    --vcf ${vcf} \
+                --recode --min-alleles 2 --max-alleles 2 \
+                --out ${id} 
+    """ 
+}
+
+
+
+
+
+process INDEL {
+
+    scratch true                                                                
+    input:                                                                      
+        tuple val(id), file(vcf)                                                
+    output:                                                                     
+        tuple val(id), file("*.recode.vcf")                                  
+       
+    """
+    vcftools --vcf ${vcf} \
+                --recode --remove-indels \
+                --out ${id}
+    """                                
+}
 
 process VCF_TO_TPED {
 
