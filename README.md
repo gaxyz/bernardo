@@ -25,24 +25,24 @@ Recombination maps are estimated using LDMAP.
 
 * Basic nextflow modules and workflow for simulation analysis
 
-* Containerization of workflow for simple and efficient implementation on HPCCs
+* ~~Containerization of workflow for~~ simple and efficient implementation on HPCCs
 
 * Simulation of admixed populations under a standardised model (north american admixture)
 
 * Basic LDMAP pipeline for a single subset of chromosome 16
 
+* LDMAP sliding window approach in a parallelized manner.
+
+* General LDMAP pipeline for computing multiple populations (single chromosome)
+
 ## To-do list (orderded)
 
 
-1. Adapt nf modules to run LDMAP on multiple tracts of a chromosome
+1. Adapt nf modules to run LDMAP on multiple chromosomes automatically.
 
-2. Adapt nf modules to integrate multiple LDMAP results into a single-chromosome result
+2. Quality control of intermediary steps
 
-3. Adapt nf modules to run LDMAP on multiple chromosomes 
-
-4. Quality control of intermediary steps
-
-5. ???
+3. ???
 
 
  
