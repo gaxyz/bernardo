@@ -40,7 +40,7 @@ def run_ldmap(tped):
     
     command = [LDMAP,
                tped,
-               "{0}_{1}_intermediate.tmp".format(prefix,index),
+               "{0}_{1}.tmp".format(prefix,index),
                "job.job",
                "{0}_{1}.map".format(prefix, index),
                "{0}_{1}.log".format(prefix, index),

@@ -1,6 +1,8 @@
 process PREPROCESS {
 
-    scratch false                                                             
+
+    cpus 1 
+    scratch true                                                             
     input:                                                                      
         tuple val(id), file(vcf)                                                
     output:                                                                     
@@ -84,7 +86,7 @@ process INDEL {
 
 process VCF_TO_TPED {
 
-
+    cpus 1 
     scratch true
     input:
         tuple val(id), file(vcf)
@@ -92,7 +94,7 @@ process VCF_TO_TPED {
         tuple val(id), file("genotypes_*.tped")
 
     """
-    plink --vcf ${vcf} --recode 12 transpose --out genotypes_${id}
+    plink --vcf ${vcf} --recode 12 transpose --out genotypes_${id} 
     """
 
 }

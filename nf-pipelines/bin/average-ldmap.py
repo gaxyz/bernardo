@@ -24,17 +24,23 @@ def ldmap_to_dict( input_file, dictionary ):
     with open(input_file, 'r' ) as ldmap_file:
         next(ldmap_file)
         for line in ldmap_file:
-            
-            if not line.startswith("#"):
-                SNPid = line.split[0]
-                #kb_map = line.split[1]
-                LDU = line.split[2].rstrip()
+             
+            a = line
+            if not a.startswith("#"):
+                SNPid = a.split()[1]
+                #kb_map = a.split[1]
                 try:
-                    dictionary[SNPid]
-                except KeyError:
-                    dictionary[SNPid] = LDU
+                    LDU = float(a.split()[3].rstrip())
+                except IndexError:
+                    pass
                 else:
-                    dictionary[SNPid].append( LDU )
+
+                    try:
+                        dictionary[SNPid]
+                    except KeyError:
+                        dictionary[SNPid] = [LDU]
+                    else:
+                        dictionary[SNPid].append( LDU )
             else:
                 pass
 
