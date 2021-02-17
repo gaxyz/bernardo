@@ -22,27 +22,31 @@ def ldmap_to_dict( input_file, dictionary ):
     values is a list of LDU values that is updated as new files are read.
     """
     with open(input_file, 'r' ) as ldmap_file:
-        next(ldmap_file)
-        for line in ldmap_file:
-             
-            a = line
-            if not a.startswith("#"):
-                SNPid = a.split()[1]
-                #kb_map = a.split[1]
-                try:
-                    LDU = float(a.split()[3].rstrip())
-                except IndexError:
-                    pass
-                else:
+        #Check if file is empty
+        first_char = ldmap_file.read(1)
+        if not first_char:
+            pass
+        else:
 
+            for line in ldmap_file:
+                
+                a = line
+                
+                if not a.startswith("#"):
+                     
                     try:
-                        dictionary[SNPid]
-                    except KeyError:
-                        dictionary[SNPid] = [LDU]
+                        LDU = float(a.split()[3].rstrip())
+                        SNPid = a.split()[1]
+
+                    except IndexError:
+                        pass
                     else:
-                        dictionary[SNPid].append( LDU )
-            else:
-                pass
+                        if SNPid not in dictionary.keys():
+                            dictionary[SNPid] = [LDU]
+                        else:
+                            dictionary[SNPid].append( LDU )
+                else:
+                    pass
 
 
 def average_and_write(dictionary, outfile):
@@ -72,6 +76,7 @@ loci_dict = {} # dictionary for holding values
 file_list = glob.glob( file_prefix + "*.map" )
 
 for ldmap_file in file_list:
+    
     ldmap_to_dict(ldmap_file, loci_dict)
 
 

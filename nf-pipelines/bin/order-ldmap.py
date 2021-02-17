@@ -19,10 +19,10 @@ output_name = args.outFile
 ldmap = pd.read_csv(ldmap_file, index_col=0, sep = " " )
 ## Read tped (only metadata columns)
 colnames = ["chr","SNPid","cM","pos"]
-tped = pd.read_csv("genotypes_TSI.tped", names=colnames, sep=" ", usecols=[0,1,2,3], index_col=1)
+tped = pd.read_csv(tped, names=colnames, sep=" ", usecols=[0,1,2,3], index_col=1)
 ## Join them
 joined=tped.join(ldmap, on = "SNPid", how="right").sort_values(by="pos")
-joined.to_csv(output_name, index_label = True )
+joined.to_csv(output_name, index_label = True, na_rep="NA" )
 
 
 

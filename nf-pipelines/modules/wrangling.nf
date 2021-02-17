@@ -2,7 +2,7 @@ process PREPROCESS {
 
 
     cpus 1 
-    scratch true                                                             
+
     input:                                                                      
         tuple val(id), file(vcf)                                                
     output:                                                                     
@@ -10,7 +10,9 @@ process PREPROCESS {
 
 
     """
-    vcftools --gzvcf ${vcf} \
+    bcftools annotate --remove INFO ${vcf} -o ${id}.info.vcf.gz -O z
+
+    vcftools --gzvcf ${id}.info.vcf.gz \
              --recode --maf ${params.min_maf} \
              --out ${id}
 
