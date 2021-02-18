@@ -35,14 +35,14 @@ Recombination maps are estimated using LDMAP.
 
 * General LDMAP pipeline for computing multiple populations (single chromosome)
 
-## To-do list (orderded)
 
 
-1. Adapt nf modules to run LDMAP on multiple chromosomes automatically.
 
-2. Quality control of intermediary steps
 
-3. ???
+
+
+
+
 
 
  

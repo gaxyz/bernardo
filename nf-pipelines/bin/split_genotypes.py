@@ -88,7 +88,7 @@ for chromosome in chromosomes:
                 "-o",
                 str(outfile) ]
         
-        message = "---> {0}/{1} populations parsed for chromosome {2}".format(counter,len(pop_lists), chromosome )
+        message = "---> {0}/{1} populations parsed for chromosome {2}\n".format(counter,len(pop_lists), chromosome )
         sys.stdout.write("\r{0}".format( message ) )
         sys.stdout.flush()
 
