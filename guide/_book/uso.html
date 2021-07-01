@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Uso | Guía de uso de pipeline de LDMAP</title>
+  <meta name="description" content="2 Uso | Guía de uso de pipeline de LDMAP" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Uso | Guía de uso de pipeline de LDMAP" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Uso | Guía de uso de pipeline de LDMAP" />
+  
+  
+  
+
+<meta name="author" content="Gaston Rijo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducción.html"/>
+
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="uso.html"><a href="uso.html"><i class="fa fa-check"></i><b>2</b> Uso</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="uso.html"><a href="uso.html#setup"><i class="fa fa-check"></i><b>2.1</b> Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="uso.html"><a href="uso.html#params"><i class="fa fa-check"></i><b>2.2</b> params</a></li>
+<li class="chapter" data-level="2.3" data-path="uso.html"><a href="uso.html#profiles"><i class="fa fa-check"></i><b>2.3</b> profiles</a></li>
+<li class="chapter" data-level="2.4" data-path="uso.html"><a href="uso.html#manifest-trace-timeline-report"><i class="fa fa-check"></i><b>2.4</b> manifest, trace, timeline, report</a></li>
+<li class="chapter" data-level="2.5" data-path="uso.html"><a href="uso.html#correr-el-pipeline"><i class="fa fa-check"></i><b>2.5</b> Correr el pipeline</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guía de uso de pipeline de LDMAP</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="uso" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Uso</h1>
+<p>En esta sección se hace explícito el uso del pipeline de <em>Nextflow</em>.</p>
+<div id="setup" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Setup</h2>
+<p>Primero, hay que crear un directorio con los archivos adecuados:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="uso.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> test</span>
+<span id="cb2-2"><a href="uso.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> test</span></code></pre></div>
+<p>Nos movemos al directorio <code>test</code>, y creamos un directorio <code>bin</code> que va a contener los scripts necesarios para el análisis. Luego de crearlo, hacmos un enlace simbólico a los archivos correspondientes (que son todos los que estan en la carpeta <code>bernardo/bin</code>).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="uso.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> bin</span>
+<span id="cb3-2"><a href="uso.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bin</span>
+<span id="cb3-3"><a href="uso.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../../../bin/<span class="pp">*</span></span>
+<span id="cb3-4"><a href="uso.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Volvemos para una carpeta arriba</span></span>
+<span id="cb3-5"><a href="uso.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<p>Ahora, hacemos algo similar con el archivo que controla el pipeline, <code>recombination-analysis.nf</code>. Éste archivo es el archivo de <em>nextflow</em> que contiene todas las directivas para correr el pipeline.</p>
+<p>Además, copiamos el archivo <code>.config</code> correspondiente al análisis.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="uso.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># enlace simbólico</span></span>
+<span id="cb4-2"><a href="uso.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../../workflows/recombination-analysis.nf .</span>
+<span id="cb4-3"><a href="uso.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../../workflows/recombination-analysis.config .</span></code></pre></div>
+<p>En total, en el directorio <code>test</code>, vamos a tener dos archivos, y un directorio. Hay que tener en cuenta que los comandos de mas arriba fueron hechos con caminos relativos, esto tiene que ser realizado de acuerdo a la posicion relativa de <code>test</code> con respecto a todos los archivos enlazados y copiados.</p>
+</div>
+<div id="params" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> params</h2>
+<p>Es importante el cotenido del archivo <code>recombination-analysis.config</code>. Éste le va a indicar al archivo <code>.nf</code> los parámetros relevantes.</p>
+<p>Por defecto, éste es el archivo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="uso.html#cb5-1" aria-hidden="true" tabindex="-1"></a>params {</span>
+<span id="cb5-2"><a href="uso.html#cb5-2" aria-hidden="true" tabindex="-1"></a>        ldmap = &quot;/usr/bin/ldmapper1&quot;</span>
+<span id="cb5-3"><a href="uso.html#cb5-3" aria-hidden="true" tabindex="-1"></a>        vcfs = &quot;data<span class="co">/*.vcf.gz&quot;</span></span>
+<span id="cb5-4"><a href="uso.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">        outdir = &quot;results&quot;</span></span>
+<span id="cb5-5"><a href="uso.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">        window_size = 10000</span></span>
+<span id="cb5-6"><a href="uso.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">        window_offset = 5000</span></span>
+<span id="cb5-7"><a href="uso.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">        chromosome = 1</span></span>
+<span id="cb5-8"><a href="uso.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">        min_maf=0.1</span></span>
+<span id="cb5-9"><a href="uso.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb5-10"><a href="uso.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">profiles {</span></span>
+<span id="cb5-11"><a href="uso.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">        standard {</span></span>
+<span id="cb5-12"><a href="uso.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">                process.executor = &quot;local&quot;</span></span>
+<span id="cb5-13"><a href="uso.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">                process.cpus = 12</span></span>
+<span id="cb5-14"><a href="uso.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">                process.memory = 40</span></span>
+<span id="cb5-15"><a href="uso.html#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">                process.conda = &quot;/export/home/grijo/miniconda3/envs/slim&quot;</span></span>
+<span id="cb5-16"><a href="uso.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">                }</span></span>
+<span id="cb5-17"><a href="uso.html#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">        clusteruy {</span></span>
+<span id="cb5-18"><a href="uso.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">                process.executor = &quot;slurm&quot;</span></span>
+<span id="cb5-19"><a href="uso.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">                process.memory=&quot;10G&quot;</span></span>
+<span id="cb5-20"><a href="uso.html#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">                process.conda=&quot;/clusteruy/home/bbertoni/miniconda3/envs/bernardo&quot;</span></span>
+<span id="cb5-21"><a href="uso.html#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">                process.clusterOptions=&quot;--qos=besteffort --partition=besteffort&quot;</span></span>
+<span id="cb5-22"><a href="uso.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">                process.errorStrategy=&quot;retry&quot;</span></span>
+<span id="cb5-23"><a href="uso.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">                executor.queueSize=50</span></span>
+<span id="cb5-24"><a href="uso.html#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">                process {       withLabel: big {</span></span>
+<span id="cb5-25"><a href="uso.html#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">                                        cpus = 20</span></span>
+<span id="cb5-26"><a href="uso.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">                                        memory = 20.GB</span></span>
+<span id="cb5-27"><a href="uso.html#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">                                }</span></span>
+<span id="cb5-28"><a href="uso.html#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">                        }</span></span>
+<span id="cb5-29"><a href="uso.html#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">        }</span></span>
+<span id="cb5-30"><a href="uso.html#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="uso.html#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb5-32"><a href="uso.html#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">manifest {</span></span>
+<span id="cb5-33"><a href="uso.html#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">    description = &quot;Run ldmap on vcf chromosome ${chromosome}&quot;</span></span>
+<span id="cb5-34"><a href="uso.html#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">    mainScript = &quot;recombination-analysis.nf&quot;</span></span>
+<span id="cb5-35"><a href="uso.html#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="uso.html#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb5-37"><a href="uso.html#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="uso.html#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="uso.html#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">trace {</span></span>
+<span id="cb5-40"><a href="uso.html#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">    enabled = true</span></span>
+<span id="cb5-41"><a href="uso.html#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">    fields  = &quot;task_id,hash,native_id,process,tag,name,status,exit,cpus,start,complete,realtime,%cpu,%mem&quot;</span></span>
+<span id="cb5-42"><a href="uso.html#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">    file = &quot;run_info/trace_chr${chromosome}.txt&quot;</span></span>
+<span id="cb5-43"><a href="uso.html#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">    }</span></span>
+<span id="cb5-44"><a href="uso.html#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="uso.html#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">timeline {</span></span>
+<span id="cb5-46"><a href="uso.html#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">    enabled = true</span></span>
+<span id="cb5-47"><a href="uso.html#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co">    file = &quot;run_info/timeline_chr${chromosome}.html&quot;</span></span>
+<span id="cb5-48"><a href="uso.html#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb5-49"><a href="uso.html#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="uso.html#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co">report {</span></span>
+<span id="cb5-51"><a href="uso.html#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co">    enabled = true</span></span>
+<span id="cb5-52"><a href="uso.html#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co">    file = &quot;run_info/report_chr${chromosome}.html&quot;</span></span>
+<span id="cb5-53"><a href="uso.html#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code></pre></div>
+<p>En un principio, la primera sección es la más importante.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="uso.html#cb6-1" aria-hidden="true" tabindex="-1"></a>params {</span>
+<span id="cb6-2"><a href="uso.html#cb6-2" aria-hidden="true" tabindex="-1"></a>        ldmap = &quot;/usr/bin/ldmapper1&quot;</span>
+<span id="cb6-3"><a href="uso.html#cb6-3" aria-hidden="true" tabindex="-1"></a>        vcfs = &quot;data<span class="co">/*.vcf.gz&quot;</span></span>
+<span id="cb6-4"><a href="uso.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">        outdir = &quot;results&quot;</span></span>
+<span id="cb6-5"><a href="uso.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">        window_size = 10000</span></span>
+<span id="cb6-6"><a href="uso.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">        window_offset = 5000</span></span>
+<span id="cb6-7"><a href="uso.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">        chromosome = 1</span></span>
+<span id="cb6-8"><a href="uso.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">        min_maf=0.1</span></span>
+<span id="cb6-9"><a href="uso.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code></pre></div>
+<p>Ésta es la sección que hay que modificar según el uso que se le dé al pipeline. Vamos a explorar el significado de cada parámetro.</p>
+<ul>
+<li><p><code>ldmap</code> indica el camino absoluto al binario de ldmapper. Necesariamente tiene que ser <code>ldmapper1</code>, el que se usa como línea de comando.</p></li>
+<li><p><code>vcfs</code> indica los VCF que van a ser analizados (usando una expresión glob). Es muy importante que los VCF sean de <strong>un único cromosoma</strong> y que <strong>estén nombrados y separados por poblaciones</strong>. Por ejemplo, para el 1000genomes; <code>PUR.vcf.gz</code> <code>CHB.vcf.gz</code>.</p></li>
+<li><p><code>outdir</code> indica el directorio a crear para depositar el output.</p></li>
+<li><p><code>window_size</code> indica el tamaño de la ventana genómica sobre la cual calcular LD. Tener en cuenta que el tamaño está determinado por el <strong>número de SNPs</strong>, y no por la posición genómica. Además, cuanto más grande, mas va a tardar.</p></li>
+<li><p><code>window_offset</code> indica el tamaño del paso que da la ventana para un nuevo cálculo de LD. Cuanto menor, mayor cantidad de cálculos. Si es uno, va a realizar un cálculo por SNP, como una sliding window de 1 (no recomendable). Recomiendo la mitad de <code>window_size</code>, que parece ser un buen trade-off entre velocidad y calidad.</p></li>
+<li><p><code>chromosome</code> cromosoma a analizar. Pueden ser valores del 1 al 23 o X.</p></li>
+<li><p><code>min_maf</code> umbral de <em>minor allele</em> frequency a usar, SNPs con menos de ese valor en cada población son descartados.</p></li>
+</ul>
+<p>Los parámetros que van a determinar la calidad de los resultados van a ser <code>window_size</code> y <code>window_offset</code>. Agarrar un subgrupo de poblaciones, digamos 2, aplicar el pipeline, y ver la distribución del estadístico a lo largo del genoma. Si es relativamente <em>smooth</em> está todo bien. Si se ven patrones raros, que es posible, pensar bien el efecto que tiene cada uno de los parámetros, y ajustar de acuerdo.</p>
+</div>
+<div id="profiles" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> profiles</h2>
+<p>Esta sección explicita los <code>profiles</code> de nextflow. Básicamente, es una configuración que indica bajo que condiciones de hardware y software se debe correr el pipeline. Para desarrollo, es mejor el “local.” Para correr el pipeline de forma intensiva en clusteruy, bueno, el “clusteruy.”</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="uso.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">profiles</span> {</span>
+<span id="cb7-2"><a href="uso.html#cb7-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">standard</span> {</span>
+<span id="cb7-3"><a href="uso.html#cb7-3" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.executor</span> = <span class="st">&quot;local&quot;</span></span>
+<span id="cb7-4"><a href="uso.html#cb7-4" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.cpus</span> = 12</span>
+<span id="cb7-5"><a href="uso.html#cb7-5" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.memory</span> = 40</span>
+<span id="cb7-6"><a href="uso.html#cb7-6" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.conda</span> = <span class="st">&quot;/export/home/grijo/miniconda3/envs/slim&quot;</span></span>
+<span id="cb7-7"><a href="uso.html#cb7-7" aria-hidden="true" tabindex="-1"></a>                <span class="er">}</span></span>
+<span id="cb7-8"><a href="uso.html#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="ex">clusteruy</span> {</span>
+<span id="cb7-9"><a href="uso.html#cb7-9" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.executor</span> = <span class="st">&quot;slurm&quot;</span></span>
+<span id="cb7-10"><a href="uso.html#cb7-10" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.memory=</span><span class="st">&quot;10G&quot;</span></span>
+<span id="cb7-11"><a href="uso.html#cb7-11" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.conda=</span><span class="st">&quot;/clusteruy/home/bbertoni/miniconda3/envs/bernardo&quot;</span></span>
+<span id="cb7-12"><a href="uso.html#cb7-12" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.clusterOptions=</span><span class="st">&quot;--qos=besteffort --partition=besteffort&quot;</span></span>
+<span id="cb7-13"><a href="uso.html#cb7-13" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process.errorStrategy=</span><span class="st">&quot;retry&quot;</span></span>
+<span id="cb7-14"><a href="uso.html#cb7-14" aria-hidden="true" tabindex="-1"></a>                <span class="ex">executor.queueSize=50</span></span>
+<span id="cb7-15"><a href="uso.html#cb7-15" aria-hidden="true" tabindex="-1"></a>                <span class="ex">process</span> {       withLabel: big {</span>
+<span id="cb7-16"><a href="uso.html#cb7-16" aria-hidden="true" tabindex="-1"></a>                                        <span class="ex">cpus</span> = 20</span>
+<span id="cb7-17"><a href="uso.html#cb7-17" aria-hidden="true" tabindex="-1"></a>                                        <span class="ex">memory</span> = 20.GB</span>
+<span id="cb7-18"><a href="uso.html#cb7-18" aria-hidden="true" tabindex="-1"></a>                                <span class="er">}</span></span>
+<span id="cb7-19"><a href="uso.html#cb7-19" aria-hidden="true" tabindex="-1"></a>                        <span class="er">}</span></span>
+<span id="cb7-20"><a href="uso.html#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="er">}</span></span>
+<span id="cb7-21"><a href="uso.html#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="uso.html#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+</div>
+<div id="manifest-trace-timeline-report" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> manifest, trace, timeline, report</h2>
+<p>Estas secciones únicamente definen los documentos de reportaje de uso de recursos. Son muy útiles para diagnóstico.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="uso.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">manifest</span> {</span>
+<span id="cb8-2"><a href="uso.html#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">description</span> = <span class="st">&quot;Run ldmap on vcf chromosome </span><span class="va">${chromosome}</span><span class="st">&quot;</span></span>
+<span id="cb8-3"><a href="uso.html#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mainScript</span> = <span class="st">&quot;recombination-analysis.nf&quot;</span></span>
+<span id="cb8-4"><a href="uso.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="uso.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb8-6"><a href="uso.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">trace</span> {</span>
+<span id="cb8-7"><a href="uso.html#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">enabled</span> = true</span>
+<span id="cb8-8"><a href="uso.html#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">fields</span>  = <span class="st">&quot;task_id,hash,native_id,process,tag,name,status,exit,cpus,start,complete,realtime,%cpu,%mem&quot;</span></span>
+<span id="cb8-9"><a href="uso.html#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file</span> = <span class="st">&quot;run_info/trace_chr</span><span class="va">${chromosome}</span><span class="st">.txt&quot;</span></span>
+<span id="cb8-10"><a href="uso.html#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb8-11"><a href="uso.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ex">timeline</span> {</span>
+<span id="cb8-12"><a href="uso.html#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">enabled</span> = true</span>
+<span id="cb8-13"><a href="uso.html#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file</span> = <span class="st">&quot;run_info/timeline_chr</span><span class="va">${chromosome}</span><span class="st">.html&quot;</span></span>
+<span id="cb8-14"><a href="uso.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb8-15"><a href="uso.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ex">report</span> {</span>
+<span id="cb8-16"><a href="uso.html#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">enabled</span> = true</span>
+<span id="cb8-17"><a href="uso.html#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file</span> = <span class="st">&quot;run_info/report_chr</span><span class="va">${chromosome}</span><span class="st">.html&quot;</span></span>
+<span id="cb8-18"><a href="uso.html#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+</div>
+<div id="correr-el-pipeline" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Correr el pipeline</h2>
+<p>Con esto claro, ahora solo queda correr el pipeline.</p>
+<p>Asumimos que:</p>
+<ul>
+<li><p>Ya se prepararon los datos a utilizar (un solo cromosoma, vcf gzipeados nombrados segun la población).</p></li>
+<li><p>Ya se siguieron los pasos de <a href="uso.html#setup">Setup</a> para preparar el directorio.</p></li>
+<li><p>Ya se editó el archivo <code>.config</code> de manera adecuada.</p></li>
+</ul>
+<p>El comando a escribir, parados en el directorio <code>test</code> es entonces:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="uso.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run recombination-analysis.nf <span class="at">-c</span> recombination-analysis.config <span class="at">-profile</span> clusteruy</span></code></pre></div>
+<p>Así de simple! (si todo está configurado adecuadamente (que eso a veces es lo mas complicado)).</p>
+<p>Otras versiones útiles pueden ser:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="uso.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run recombination-analysis.nf <span class="at">-c</span> recombination-analysis.config <span class="at">-profile</span> clusteruy <span class="at">-N</span> tumail@mail.com</span></code></pre></div>
+<p>Envía una notificación por SUCCESS o FAILURE</p>
+<p>Si por alguna razón tuviste que matar el proceso, y querés volver desde donde dejó:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="uso.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run recombination-analysis.nf <span class="at">-c</span> recombination-analysis.config <span class="at">-profile</span> clusteruy <span class="at">-resume</span></span></code></pre></div>
+<p>Para entender bien como funciona <code>-resume</code>, recomiendo enfáticamente leer la documentación de nextflow al respecto.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducción.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

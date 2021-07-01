@@ -1,0 +1,17 @@
+---
+title: "Guía de uso de pipeline de LDMAP"
+author: "Gaston Rijo"
+date: "Junio 2021"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: ["references.bib"]
+link-citations: true
+geometry: "left=2cm, right=2cm, top=2cm, bottom=2cm"
+output:
+ bookdown::pdf_book:
+  toc_depth: 3
+ bookdown::html_book: 
+  citation_package: biblatex
+urlcolor: purple
+linkcolor: blue
+---

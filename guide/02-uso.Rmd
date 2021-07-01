@@ -1,0 +1,244 @@
+# Uso
+
+En esta sección se hace explícito el uso del pipeline de _Nextflow_.
+
+## Setup{#setup}
+
+Primero, hay que crear un directorio con los archivos adecuados:
+
+```{bash, eval=FALSE}
+mkdir -p test
+cd test
+```
+
+Nos movemos al directorio `test`, y creamos un directorio `bin` que va a contener los scripts necesarios para el análisis. Luego de crearlo, hacmos un enlace simbólico a los archivos correspondientes (que son todos los que estan en la carpeta `bernardo/bin`).
+
+
+```{bash, eval=FALSE}
+mkdir -p bin
+cd bin
+ln -s ../../../bin/*
+# Volvemos para una carpeta arriba
+cd ..
+```
+
+Ahora, hacemos algo similar con el archivo que controla el pipeline,  `recombination-analysis.nf`. Éste archivo es el archivo de _nextflow_ que contiene todas las directivas para correr el pipeline.
+
+Además, copiamos el archivo `.config` correspondiente al análisis.
+
+```{bash, eval=FALSE}
+# enlace simbólico
+ln -s ../../workflows/recombination-analysis.nf .
+cp ../../workflows/recombination-analysis.config .
+```
+
+
+
+En total, en el directorio `test`, vamos a tener dos archivos, y un directorio. Hay que tener en cuenta que los comandos de mas arriba fueron hechos con caminos relativos, esto tiene que ser realizado de acuerdo a la posicion relativa de `test` con respecto a todos los archivos enlazados y copiados.
+
+## params
+
+
+Es importante el cotenido del archivo `recombination-analysis.config`. Éste le va a indicar al archivo `.nf` los parámetros relevantes.
+
+Por defecto, éste es el archivo:
+
+```{css, eval=FALSE}
+params {
+        ldmap = "/usr/bin/ldmapper1"
+        vcfs = "data/*.vcf.gz"
+        outdir = "results"
+        window_size = 10000
+        window_offset = 5000
+        chromosome = 1
+        min_maf=0.1
+}
+profiles {
+        standard {
+                process.executor = "local"
+                process.cpus = 12
+                process.memory = 40
+                process.conda = "/export/home/grijo/miniconda3/envs/slim"
+                }
+        clusteruy {
+                process.executor = "slurm"
+                process.memory="10G"
+                process.conda="/clusteruy/home/bbertoni/miniconda3/envs/bernardo"
+                process.clusterOptions="--qos=besteffort --partition=besteffort"
+                process.errorStrategy="retry"
+                executor.queueSize=50
+                process {       withLabel: big {
+                                        cpus = 20
+                                        memory = 20.GB
+                                }
+                        }
+        }
+
+}
+manifest {
+    description = "Run ldmap on vcf chromosome ${chromosome}"
+    mainScript = "recombination-analysis.nf"
+
+}
+
+
+trace {
+    enabled = true
+    fields  = "task_id,hash,native_id,process,tag,name,status,exit,cpus,start,complete,realtime,%cpu,%mem"
+    file = "run_info/trace_chr${chromosome}.txt"
+    }
+
+timeline {
+    enabled = true
+    file = "run_info/timeline_chr${chromosome}.html"
+}
+
+report {
+    enabled = true
+    file = "run_info/report_chr${chromosome}.html"
+}
+
+```
+
+
+En un principio, la primera sección es la más importante. 
+
+```{css, eval=FALSE}
+params {
+        ldmap = "/usr/bin/ldmapper1"
+        vcfs = "data/*.vcf.gz"
+        outdir = "results"
+        window_size = 10000
+        window_offset = 5000
+        chromosome = 1
+        min_maf=0.1
+}
+```
+
+Ésta es la sección que hay que modificar según el uso que se le dé al pipeline. Vamos a explorar el significado de cada parámetro.
+
+* `ldmap` indica el camino absoluto al binario de ldmapper. Necesariamente tiene que ser `ldmapper1`, el que se usa como línea de comando.
+
+* `vcfs` indica los VCF que van a ser analizados (usando una expresión glob). Es muy importante que los VCF sean de **un único cromosoma** y que **estén nombrados y separados por poblaciones**. Por ejemplo, para el 1000genomes; `PUR.vcf.gz` `CHB.vcf.gz`.
+
+* `outdir` indica el directorio a crear para depositar el output.
+
+* `window_size` indica el tamaño de la ventana genómica sobre la cual calcular LD. Tener en cuenta que el tamaño está determinado por el **número de SNPs**, y no por la posición genómica. Además, cuanto más grande, mas va a tardar.
+
+* `window_offset` indica el tamaño del paso que da la ventana para un nuevo cálculo de LD. Cuanto menor, mayor cantidad de cálculos. Si es uno, va a realizar un cálculo por SNP, como una sliding window de 1 (no recomendable). Recomiendo la mitad de `window_size`, que parece ser un buen trade-off entre velocidad y calidad.
+
+* `chromosome` cromosoma a analizar. Pueden ser valores del 1 al 23 o X.
+
+* `min_maf` umbral de _minor allele_ frequency a usar, SNPs con menos de ese valor en cada población son descartados.
+
+
+
+Los parámetros que van a determinar la calidad de los resultados van a ser `window_size` y `window_offset`. Agarrar un subgrupo de poblaciones, digamos 2, aplicar el pipeline, y ver la distribución del estadístico a lo largo del genoma. Si es relativamente *smooth* está todo bien. Si se ven patrones raros, que es posible, pensar bien el efecto que tiene cada uno de los parámetros, y ajustar de acuerdo.
+
+
+
+
+## profiles
+
+Esta sección explicita los `profiles` de nextflow. Básicamente, es una configuración que indica bajo que condiciones de hardware y software se debe correr el pipeline. Para desarrollo, es mejor el "local". Para correr el pipeline de forma intensiva en clusteruy, bueno, el "clusteruy".
+
+
+```{bash, eval=FALSE}
+profiles {
+        standard {
+                process.executor = "local"
+                process.cpus = 12
+                process.memory = 40
+                process.conda = "/export/home/grijo/miniconda3/envs/slim"
+                }
+        clusteruy {
+                process.executor = "slurm"
+                process.memory="10G"
+                process.conda="/clusteruy/home/bbertoni/miniconda3/envs/bernardo"
+                process.clusterOptions="--qos=besteffort --partition=besteffort"
+                process.errorStrategy="retry"
+                executor.queueSize=50
+                process {       withLabel: big {
+                                        cpus = 20
+                                        memory = 20.GB
+                                }
+                        }
+        }
+
+}
+
+
+```
+
+## manifest, trace, timeline, report
+
+
+
+Estas secciones únicamente definen los documentos de reportaje de uso de recursos. Son muy útiles para diagnóstico.
+
+```{bash , eval=FALSE}
+manifest {
+    description = "Run ldmap on vcf chromosome ${chromosome}"
+    mainScript = "recombination-analysis.nf"
+
+}
+trace {
+    enabled = true
+    fields  = "task_id,hash,native_id,process,tag,name,status,exit,cpus,start,complete,realtime,%cpu,%mem"
+    file = "run_info/trace_chr${chromosome}.txt"
+    }
+timeline {
+    enabled = true
+    file = "run_info/timeline_chr${chromosome}.html"
+}
+report {
+    enabled = true
+    file = "run_info/report_chr${chromosome}.html"
+}
+```
+
+
+## Correr el pipeline
+
+Con esto claro, ahora solo queda correr el pipeline.
+
+Asumimos que:
+
+* Ya se prepararon los datos a utilizar (un solo cromosoma, vcf gzipeados nombrados segun la población).
+
+* Ya se siguieron los pasos de [Setup](#setup) para preparar el directorio.
+
+* Ya se editó el archivo `.config` de manera adecuada.
+
+
+El comando a escribir, parados en el directorio `test` es entonces:
+
+
+```{bash , eval=FALSE}
+nextflow run recombination-analysis.nf -c recombination-analysis.config -profile clusteruy
+```
+
+
+Así de simple! (si todo está configurado adecuadamente (que eso a veces es lo mas complicado)).
+
+
+Otras versiones útiles pueden ser:
+
+
+```{bash , eval=FALSE}
+nextflow run recombination-analysis.nf -c recombination-analysis.config -profile clusteruy -N tumail@mail.com
+```
+
+Envía una notificación por SUCCESS o FAILURE
+
+Si por alguna razón tuviste que matar el proceso, y querés volver desde donde dejó:
+
+
+```{bash , eval=FALSE}
+nextflow run recombination-analysis.nf -c recombination-analysis.config -profile clusteruy -resume
+```
+
+
+Para entender bien como funciona `-resume`, recomiendo enfáticamente leer la documentación de nextflow al respecto.
+
+

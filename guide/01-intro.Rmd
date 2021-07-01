@@ -1,0 +1,7 @@
+# Introducción
+
+```{r}
+setwd("~/projects/bernardo/guide")
+```
+
+Esta es una introduccion para la guia de uso del pipeline de LDMAP
